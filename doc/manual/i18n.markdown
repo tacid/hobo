@@ -127,6 +127,16 @@ All standard translations are scoped with hobo (see below). If you want specific
 For more samples search the code for ht() or &lt;ht&gt;&lt;/ht&gt; sections.
 
 
+
+### Translating bootstrap datepicker
+
+Hobo 2.0 comes with a bootstrap-styles datepicker. In order to translate it, add this code to your front_site.dryml:
+
+    <extend tag="bootstrap-datepicker">
+      <old-bootstrap-datepicker dateFormat="dd-mm-yyyy" language="es" weekstart="1" merge/>
+    </extend>
+
+
 # I18n friendly DRYML tags
 
 In hobo >= 1.3.* all the i18n hostile code has been removed. As the result a few tags have changed internally to accept more attributes and deprecate others.   A few tags have been deprecated in favour of a few other i18n specific tags that have been added and used in auto generated taglibs.
