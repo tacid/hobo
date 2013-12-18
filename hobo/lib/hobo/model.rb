@@ -227,7 +227,6 @@ module Hobo
 
       def find_by_sql(*args)
         result = super
-        result.member_class = self # find_by_sql always returns array
         result
       end
 

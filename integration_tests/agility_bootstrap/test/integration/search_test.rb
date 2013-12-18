@@ -45,6 +45,7 @@ class SearchTest < ActionDispatch::IntegrationTest
     fill_in "login", :with => "admin@example.com"
     fill_in "password", :with => "test123"
     click_button "Login"
+    sleep 0.2
     assert has_content?("Logged in as Admin User")
 
     visit root_path
