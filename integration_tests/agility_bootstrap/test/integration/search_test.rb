@@ -37,6 +37,7 @@ class SearchTest < ActionDispatch::IntegrationTest
   test "search" do
     Capybara.current_driver = :selenium_chrome
     visit root_path
+    Capybara.current_session.driver.browser.manage.window.resize_to(1024,700)
 
     # log in as Administrator
     click_link "Log out" rescue Capybara::ElementNotFound
@@ -44,6 +45,7 @@ class SearchTest < ActionDispatch::IntegrationTest
     fill_in "login", :with => "admin@example.com"
     fill_in "password", :with => "test123"
     click_button "Login"
+    sleep 0.2
     assert has_content?("Logged in as Admin User")
 
     visit root_path
