@@ -34,4 +34,4 @@ module Agility
   end
 end
 
-ActiveSupport::Deprecation.debug = true
+# ActiveSupport::Deprecation.debug = true

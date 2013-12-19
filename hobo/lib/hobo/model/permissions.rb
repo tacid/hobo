@@ -79,8 +79,8 @@ module Hobo
         #  ensure active_user gets passed down to :dependent => destroy
         #  associations  (Ticket #528)
 
-        def has_many_with_hobo_permission_check(association_id, options = {}, &extension)
-          has_many_without_hobo_permission_check(association_id, options, &extension)
+        def has_many_with_hobo_permission_check(association_id, scope=nil, options = {}, &extension)
+          has_many_without_hobo_permission_check(association_id, scope, options, &extension)
           reflection = reflections[association_id]
           if reflection.options[:dependent]==:destroy
             #overriding dynamic method created in ActiveRecord::Associations#configure_dependency_for_has_many
@@ -91,8 +91,8 @@ module Hobo
           end
         end
 
-        def has_one_with_hobo_permission_check(association_id, options = {}, &extension)
-          has_one_without_hobo_permission_check(association_id, options, &extension)
+        def has_one_with_hobo_permission_check(association_id, scope=nil, options = {}, &extension)
+          has_one_without_hobo_permission_check(association_id, scope, options, &extension)
           reflection = reflections[association_id]
           if reflection.options[:dependent]==:destroy
             #overriding dynamic method created in ActiveRecord::Associations#configure_dependency_for_has_one
@@ -106,8 +106,8 @@ module Hobo
           end
         end
 
-        def belongs_to_with_hobo_permission_check(association_id, options = {}, &extension)
-          belongs_to_without_hobo_permission_check(association_id, options, &extension)
+        def belongs_to_with_hobo_permission_check(association_id, scope=nil, options = {}, &extension)
+          belongs_to_without_hobo_permission_check(association_id, scope, options, &extension)
           reflection = reflections[association_id]
           if reflection.options[:dependent]==:destroy
             #overriding dynamic method created in ActiveRecord::Associations#configure_dependency_for_belongs_to

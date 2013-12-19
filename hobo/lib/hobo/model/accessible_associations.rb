@@ -103,8 +103,23 @@ module Hobo
 
       # --- has_many mass assignment support --- #
 
-      def self.has_many_with_accessible(name, options={}, &block)
-        has_many_without_accessible(name, options, &block)
+      def self.has_many_with_accessible(name, received_scope=nil, options={}, &block)
+        # Rails 4 supports a lambda as the second argument in a has_many association
+        # We need to support it too (required for gems like papertrail)
+        # The problem is that when it is not used, the options hash is taken as the scope
+        # To fix this, we make a small hack checking the second argument's class
+        if received_scope.is_a?(Proc)
+          has_many_without_accessible(name, received_scope, options, &block)
+        else
+          if received_scope == nil
+            options = {}
+          else
+            options = received_scope
+          end
+          has_many_without_accessible(name, options, &block)
+        end
+        # End of the received_scope hack
+
         if options[:accessible]
           class_eval %{
             def #{name}_with_accessible=(array_or_hash)

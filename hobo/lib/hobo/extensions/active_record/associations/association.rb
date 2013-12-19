@@ -27,7 +27,7 @@ module ActiveRecord
       def raise_on_type_mismatch!(record)
         # Don't complain if the interface type of a polymorphic association doesn't exist
         klass = @reflection.klass rescue nil
-        unless klass.nil? || record.is_a?(klass)
+        unless klass.nil? || record.is_a?(klass) || record.is_a?(Array)
           raise ActiveRecord::AssociationTypeMismatch, "#{@reflection.klass} expected, got #{record.class}"
         end
       end
