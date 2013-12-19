@@ -47,6 +47,7 @@ In order to make Hobo compatible with Rails 4, these are the main changes that h
 ## Other
 * `protected_attributes` gem has been added to support the "old" way of protecting attributes
 * Domizio has made Hobo thread safe :)
+* Hobo's custom `will_paginate` has been packaged into the `hobo_will_paginate` gem. This should make possible to install Hobo without Git (it seems to be a bit hard under Windows).
 
 
 
@@ -54,4 +55,4 @@ In order to make Hobo compatible with Rails 4, these are the main changes that h
 
 The integration tests in the "agility_bootstrap" folder have been updated for Hobo 2.1 and Rails 4.
 
-see https://github.com/tablatom/hobo/integration_tests/agility_bootstrap/README
+see https://github.com/Hobo/hobo/blob/master/integration_tests/agility_bootstrap/README
