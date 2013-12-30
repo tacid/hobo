@@ -34,40 +34,40 @@ GIT
 PATH
   remote: ../..
   specs:
-    dryml (2.1.0.pre1)
+    dryml (2.1.0.pre4)
       actionpack (~> 4.0.2)
-      hobo_support (= 2.1.0.pre1)
-    hobo (2.1.0.pre1)
-      dryml (= 2.1.0.pre1)
-      hobo_fields (= 2.1.0.pre1)
-      hobo_support (= 2.1.0.pre1)
+      hobo_support (= 2.1.0.pre4)
+    hobo (2.1.0.pre4)
+      dryml (= 2.1.0.pre4)
+      hobo_fields (= 2.1.0.pre4)
+      hobo_support (= 2.1.0.pre4)
       hobo_will_paginate
-    hobo_fields (2.1.0.pre1)
-      hobo_support (= 2.1.0.pre1)
-    hobo_jquery (2.1.0.pre1)
-      hobo_rapid (= 2.1.0.pre1)
+    hobo_fields (2.1.0.pre4)
+      hobo_support (= 2.1.0.pre4)
+    hobo_jquery (2.1.0.pre4)
+      hobo_rapid (= 2.1.0.pre4)
       jquery-rails (~> 2.0)
-    hobo_jquery_ui (2.1.0.pre1)
-      hobo (= 2.1.0.pre1)
-      hobo_jquery (= 2.1.0.pre1)
+    hobo_jquery_ui (2.1.0.pre4)
+      hobo (= 2.1.0.pre4)
+      hobo_jquery (= 2.1.0.pre4)
       jquery-ui-themes (~> 0.0.4)
-    hobo_rapid (2.1.0.pre1)
-      hobo (= 2.1.0.pre1)
-    hobo_support (2.1.0.pre1)
+    hobo_rapid (2.1.0.pre4)
+      hobo (= 2.1.0.pre4)
+    hobo_support (2.1.0.pre4)
       rails (~> 4.0.2)
 
 PATH
   remote: ../../../hobo_bootstrap
   specs:
-    hobo_bootstrap (2.1.0.pre1)
+    hobo_bootstrap (2.1.0.pre4)
       bootstrap-sass (~> 2.1)
       hobo_jquery (>= 2.0)
-      will_paginate-bootstrap (~> 0.2.1)
+      hobo_will_paginate-bootstrap
 
 PATH
   remote: ../../../hobo_bootstrap_ui
   specs:
-    hobo_bootstrap_ui (2.1.0.pre1)
+    hobo_bootstrap_ui (2.1.0.pre4)
       bootstrap-datepicker-rails
       hobo_bootstrap (>= 2.0)
 
@@ -109,7 +109,7 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-datepicker-rails (1.1.1.10)
+    bootstrap-datepicker-rails (1.1.1.11)
       railties (>= 3.0)
     bootstrap-sass (2.3.2.2)
       sass (~> 3.2)
@@ -140,6 +140,8 @@ GEM
     ffi (1.9.3)
     hike (1.2.3)
     hobo_will_paginate (2.1.0)
+    hobo_will_paginate-bootstrap (1.0.0)
+      hobo_will_paginate
     httparty (0.12.0)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -225,9 +227,6 @@ GEM
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     websocket (1.0.7)
-    will_paginate (3.0.5)
-    will_paginate-bootstrap (0.2.5)
-      will_paginate (>= 3.0.3)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 

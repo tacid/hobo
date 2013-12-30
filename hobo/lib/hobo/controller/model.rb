@@ -720,7 +720,9 @@ module Hobo
           hobo_ajax_response || render(:nothing => true)
         else
           location = destination_after_submit(options)
-          respond_with(self.this, :location => location)
+          respond_with(self.this) do |wants|
+            wants.html { redirect_to location }
+          end
         end
       else
         this.exempt_from_edit_checks = true
