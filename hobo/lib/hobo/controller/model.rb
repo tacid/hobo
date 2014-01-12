@@ -458,7 +458,8 @@ module Hobo
         options.reverse_merge!(:page => params[:page] || 1)
         finder.paginate(options)
       else
-        finder.all(options.except(*WILL_PAGINATE_OPTIONS))
+        # Equivalent to the old finder.scoped (http://stackoverflow.com/a/18199294)
+        finder.where(nil)
       end
     end
 
