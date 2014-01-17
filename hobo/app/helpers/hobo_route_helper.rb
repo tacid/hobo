@@ -77,10 +77,13 @@ module HoboRouteHelper
         recognized_params = Rails.application.routes.recognize_path(base_url, {:method => options[:method]})
         url
       rescue NoMethodError => e  # raised if polymorphic_url fails
+        logger.info("polymorphic_url has failed with NoMethodError: #{e.message}")
         nil
       rescue ArgumentError => e  # raised from polymorphic_url
+        logger.info("polymorphic_url has failed with ArgumentError: #{e.message}")
         nil
       rescue ActionController::RoutingError => e  # raised if recognize_path fails
+        logger.info("recognize_path has failed: #{e.message}")
         nil
       end
 
