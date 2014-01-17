@@ -107,10 +107,10 @@ module Generators
             collection_path = "#{owner_class.pluralize}/:#{owner}_id/#{collection}"
 
             routes = []
-            routes << "get 'new', :on => :new, :action => 'new_for_#{owner}'" if actions.include?(:new)
+            routes << "get '/', :on => :new, :action => 'new_for_#{owner}'" if actions.include?(:new)
             collection_routes = []
-            collection_routes << "get 'index', :action => 'index_for_#{owner}'" if actions.include?(:index)
-            collection_routes << "post 'create', :action => 'create_for_#{owner}'" if actions.include?(:create)
+            collection_routes << "get '/', :action => 'index_for_#{owner}'" if actions.include?(:index)
+            collection_routes << "post '/', :action => 'create_for_#{owner}'" if actions.include?(:create)
             routes << {"collection" => collection_routes} unless collection_routes.empty?
 
             { "resources :#{owner_class.pluralize}, :as => :#{owner}, :only => []" =>
