@@ -187,7 +187,7 @@ module HoboFields
     # automatically delcares the 'position' field
     def self.acts_as_list_with_field_declaration(options = {})
       declare_field(options.fetch(:column, "position"), :integer)
-      default_scope { order("position ASC") }
+      default_scope { order("#{self.table_name}.position ASC") }
       acts_as_list_without_field_declaration(options)
     end
 
