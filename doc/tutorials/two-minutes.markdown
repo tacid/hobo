@@ -6,7 +6,7 @@ Before installing Hobo, you must have
 [Ruby](http://www.ruby-lang.org/en/) and
 [RubyGems](http://docs.rubygems.org/). You will also need the "git" command.
 
-Installing Hobo 2.0 will auto install Rails 3.2. Be careful not to install Rails 4, it's currently not compatible.
+Installing Hobo 2.1 will auto install Rails 4.0.
 
 For example, these are the steps you would need in Ubuntu 12.04:
 
