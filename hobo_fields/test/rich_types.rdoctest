@@ -339,10 +339,13 @@ Sometimes it's nice to have a proper type name. Here's one way you might go abou
 Named EnumString's may be translated.   Here is an example fr.yml:
 
     fr:
-      article/statuses:
+      article/statuss:
         draft: "esquisse"
         approved: "approuvé"
         published: "publiés"
+
+(Note that in this case, the field name 'status' is pluralized, but very simply by adding an 's', not an 'es'
+as would be gramatically correct.)
 
 Alternatively, the translations may be supplied in ruby:
 
