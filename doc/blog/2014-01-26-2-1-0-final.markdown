@@ -7,7 +7,7 @@ author_email: ignacio@ihuerta.net
 ---
 We're proud to announce the release of Hobo 2.1.0 with Rails 4 support!
 
-Take a look at the [Download and Installation Instructions](/manual/download).
+Take a look at the [Download and Installation Instructions](/tutorials/two-minutes).
 
 Many of the changes required in upgrading a Hobo 2.0 application are necessitated by the switch from Rails 3.2 to 4.0.  [Railscasts has a good guide to upgrading to Rails 4.0](http://railscasts.com/episodes/415-upgrading-to-rails-4).
 
