@@ -6,10 +6,9 @@ Before installing Hobo, you must have
 [Ruby](http://www.ruby-lang.org/en/) and
 [RubyGems](http://docs.rubygems.org/). You will also need the "git" command.
 
-Installing Hobo 2.1 will auto install Rails 4.0.
+Installing Hobo 2.1 will cause Rails 4 to be installed when the Hobo application generator first runs 'bundle install'.
 
 For example, these are the steps you would need in Ubuntu 12.04:
-
 
         sudo apt-get update
         sudo apt-get install -y ruby1.9.3 rubygems nodejs libsqlite3-dev git
@@ -19,10 +18,27 @@ For example, these are the steps you would need in Ubuntu 12.04:
         echo 'PATH="$HOME/.gem/bin:$PATH"' >> .bashrc
 
 
-## Install Hobo and create your first app
+## Install Hobo
 
 	gem install hobo
+
+## Create a new Hobo application
+
+NOTE: Before creating a new Hobo application, check if you have the HOBODEV environment variable defined:
+
+	$ echo $HOBODEV
+	
+If it is defined and points to a local copy of Hobo source, you should temporarily undefine it, otherwise
+the generated Gemfile in your new Hobo application will reference the HOBODEV source code instead of the Hobo gem. 
+This will likley cause unresolved dependencies when the Hobo application generator runs 'bundle install'. 
+You can unset the HOBODEV variable by typing
+	
+	$ HOBODEV=
+
+Now, create your new Hobo application:
+
 	hobo new thingybob --setup
+
 
 (The `--setup` option tells hobo to use the defaults rather than
 asking questions about your application.   After you play with
@@ -55,7 +71,7 @@ And there is your app! You should be able to
 * Create and edit Things
 * Search for things
 
-That's it. Why not try another of the tutorials on your left.
+That's it. Why not try another of the tutorials on your left?
 
 Note: If you wish to download the gems directly, you can get them from
 [RubyGems.org](http://rubygems.org).
