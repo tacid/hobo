@@ -33,7 +33,7 @@ the generated Gemfile in your new Hobo application will reference the HOBODEV so
 This will likley cause unresolved dependencies when the Hobo application generator runs 'bundle install'. 
 You can unset the HOBODEV variable by typing
 	
-	$ HOBODEV=
+	$ unset HOBODEV
 
 Now, create your new Hobo application:
 
