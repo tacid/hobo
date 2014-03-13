@@ -816,7 +816,7 @@ module Hobo
 
     def permission_denied(error)
       self.this = true # Otherwise this gets sent user_view
-      logger.info "Hobo: Permission Denied!"
+      logger.info "Hobo: Permission Denied! (#{error.inspect})"
       @permission_error = error
       if self.class.superclass.method_defined?("permission_denied")
         super
