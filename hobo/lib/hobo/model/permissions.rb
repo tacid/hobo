@@ -134,21 +134,21 @@ module Hobo
 
       def create_record_with_hobo_permission_check(*args, &b)
         if permission_check_required?
-          create_permitted? or raise PermissionDeniedError, "#{self.class.name}#create"
+          create_permitted? or raise PermissionDeniedError, "#{self.class.name} #{self.id}#create"
         end
         create_record_without_hobo_permission_check(*args, &b)
       end
 
       def update_record_with_hobo_permission_check(*args)
         if permission_check_required?
-          update_permitted? or raise PermissionDeniedError, "#{self.class.name}#update"
+          update_permitted? or raise PermissionDeniedError, "#{self.class.name} #{self.id}#update"
         end
         update_record_without_hobo_permission_check(*args)
       end
 
       def destroy_with_hobo_permission_check
         if permission_check_required?
-          destroy_permitted? or raise PermissionDeniedError, "#{self.class.name}#.destroy"
+          destroy_permitted? or raise PermissionDeniedError, "#{self.class.name} #{self.id}#.destroy"
         end
 
         destroy_without_hobo_permission_check
