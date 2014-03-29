@@ -373,13 +373,55 @@ An example call:
 
 It is not required that a transition name is distinct from all the others. For example, a process may have many stages (states) and there may be an option to abort the process at any stage. It is possible to define several transitions called `:abort`, each starting from a different start state. You could achieve a similar effect by listing all the start states in a single transition, but by defining separate transitions, each one could, for example, be given a different action (block).
 
+NOTE
+If you repeat transitions, any `:params` you depend on in the variations of the transitions must be listed on the *first* variation of the transition, otherwise they will not be available to subsequent versions of the same transition. 
+
+For example: Given these two variations of a transition (available to different users), the [:comments] param on the second variation will NOT be available to the transition. 
+
+    transition :reject, {:submitted => :rejected},  
+      :available_to => 'acting_user if (acting_user.administrator? || acting_user.officer?)' do 
+      
+    transition :reject, {:in_review => :rejected}, :params => [:comments], 
+      :available_to => 'acting_user if (acting_user.administrator?)' do 
+{.ruby}
+
+For the second variation to support the param, it needs to be listed *first* in the lifecycle, as follows:
+
+    transition :reject, {:in_review => :rejected}, :params => [:comments], 
+      :available_to => 'acting_user if (acting_user.administrator?)' do 
+      
+    transition :reject, {:submitted => :rejected},  
+      :available_to => 'acting_user if (acting_user.administrator? || acting_user.officer?)' do 
+{.ruby}
+
+You may be depending on the :comments field to appear within a form as follows:
+
+      <call-tag tag="#{transition}-form">
+        <field-list:>
+          <comments-view:>
+            <text-area class="no-ckeditor"/>
+          </comments-view:>
+        </field-list:>
+        <actions: replace></actions:>
+      </call-tag>
+
+but it will only appear if it's listed on the first variation. 
+
+
+As mentioned earlier, if these two variations of the transition were made available to the same users, their ":from" transitions could be combined in an array:
+
+    transition :reject, { [:submitted, :in_review] => :rejected}, :params => [:comments], 
+      :available_to => 'acting_user if (acting_user.administrator? || acting_user.officer?)' do 
+{.ruby}
+
+
 
 ## The `:available_to` option
 
 Both create and transition steps can be made accessible to certain users with the `:available_to` option. If this option is given, the step is considered 'publishable', and there will be automatic support for the step in both the controller and view layers.
 
 The rules for the `:available_to` option are as follows. Firstly, it can be one of three special values:
-
+R
  - `:all` -- anyone, including guest users, can trigger the step
 
  - `:key_holder` -- (transitions only) anyone can trigger the transition, provided `record.lifecycle.provided_key` is set to the correct key. Discussed in detail later.
