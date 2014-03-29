@@ -316,30 +316,47 @@ names listed in the `:params` option.
 
 ## Defining transitions
 
-A transition is an arc in the graph of the finite state machine -- an operation that takes the lifecycle from one state to another (or, potentially, back to the same state.). The definition looks like:
+A transition is an arc in the graph of the finite state machine -- an operation that takes the object from one state to another (or, potentially, back to the same state.). The definition of a transition looks like:
 
     transition name, { from => to }, options do ... end
 {.ruby}
 
-The name is a symbol. It should be a valid ruby name.
+The `name` is a symbol. It must be a valid Ruby name and will become name of the method called to transition the object. 
 
 The second argument is a hash with a single item:
 
     { from => to }
 {.ruby}
 
- (We chose this syntax for the API just because the `=>` is quite nice to indicate a transition)
+(We chose this syntax for the API just because the `=>` is quite nice to indicate a transition)
+ 
+For example:
 
-This transition can only be fired in the state or states given as `from`, which can be either a symbol or an array of symbols. On completion of this transition, the record will be in the state give as `to` which can be one of:
+    transition :review, { :submitted => :in_review }
+{.ruby}
 
- - A symbol -- the name of the state
- - A proc -- if the proc takes one argument it is called with the record, if it takes none it is `instance_eval`'d on the record. Should
-   return the name of the state
- - A string -- evaluated as a Ruby expression with in the context of the record
+This transition can only be fired in the state or states given as `from`, which can be either a symbol or an array of symbols. For example:
 
-The options are:
+    transition :accept, { [:in_review, :in_final_review] => :accepted }
+{.ruby}
 
- - `:params` - an array of attribute names that are parameters of this transition. These attributes can be set when the transition runs.
+In this example, the object can transition to the 'accepted' state from either the 'in_review' state or the 'in_final_review' state. 
+
+On completion of this transition, the object will be in the state give as `to` which can be one of:
+
+ - A symbol -- the name of the object's new state;
+ - A proc -- if the proc takes one argument it is called with the record, if it takes none it is `instance_eval`'d on the record. It should return the name of the new state;
+ - A string -- evaluated as a Ruby expression within the context of the record;
+
+Options to a transition can include the following:
+
+ - `:params` - an array of attribute names that are parameters of this transition. These attributes can be set when the transition runs. For example:
+
+
+    transition :reject, { [:in_review, :awaiting_final_review, :in_final_review ] => :rejected }, :params => [:comments]
+{.ruby}
+    
+    In this example, the comments attribute of the object will be updated with the contents of the `:comments` parameter passed on the method call (such as a form whose submit action calls the reject method (transition) and passes a `:comments` parameter to the method). 
 
  - `:if` and `:unless` -- a precondition on the transition. Pass either:
 
