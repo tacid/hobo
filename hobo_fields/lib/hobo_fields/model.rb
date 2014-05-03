@@ -64,7 +64,6 @@ module HoboFields
       attrs << options unless options.empty?
       public
       attr_accessor_without_rich_types(*attrs)
-      private
 
       if type
         type = HoboFields.to_class(type)
