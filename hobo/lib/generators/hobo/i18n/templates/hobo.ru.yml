@@ -161,7 +161,7 @@ ru:
       error:
         heading: "Произошла ошибка:"
       select_many:
-            prompt: "Добавить %{model}"
+        prompt: "Добавить %{model}"
 
     # hobo support
     support:
