@@ -70,6 +70,7 @@ module Hobo
         user = model.authenticate(params[:login], params[:password])
         if user.nil?
           flash[:error] = options[:failure_notice]
+          logger.info('Failed login from IP ' + request.remote_ip + ' with login ' + params[:login] + ' at ' + I18n.localize(DateTime.now, :format => '%Y-%m-%d %H:%M:%S %Z'))
           hobo_ajax_response if request.xhr? && !performed?
         else
           old_user = current_user
